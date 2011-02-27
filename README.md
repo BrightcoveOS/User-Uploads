@@ -55,7 +55,7 @@ Installation Notes
 ==================
 
 You must follow standard PHP file upload standards (include a form encoding
-type and a MAX_FILE_SIZE).
+type and a MAX\_FILE\_SIZE).
 
 You must also ensure that your PHP settings related to forms and file
 upload sizes are set appropriately. For example:
