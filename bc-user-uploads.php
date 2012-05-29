@@ -63,9 +63,10 @@ class BCUserUploads {
 		}
 		
 		if(isset($data['tags']))
-		{
-			$data['tags'] = $this->handleTags($data['tags']);
-		}
+                {
+                        $data['tags'] = $this->handleTags($data['tags']);
+                        $data['tags'][] = 'User-Uploaded';
+                }
 		
 		if(isset($_FILES['bc-video']))
 		{
@@ -95,9 +96,12 @@ class BCUserUploads {
 	
 	private function handleTags($tags)
 	{
+		
+		if (!is_array($tags)) {
+			$tags = explode(',', trim($tags));
+		}
+		
 		$pattern = '/[\t\n\r]+/';
-		$tags = explode(',', $tags);
-		$tags = trim($tags);
 		
 		foreach($tags as $key => $value)
 		{
@@ -105,7 +109,6 @@ class BCUserUploads {
 			
 			if($matches)
 			{
-				// gulp
 				unset($tags[$key]);
 			}
 		}
